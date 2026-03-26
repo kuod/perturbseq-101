@@ -1,0 +1,106 @@
+# perturb-101
+
+A sequentially numbered, end-to-end tutorial for Perturb-seq analysis. Designed for bioinformaticians who know single-cell RNA-seq and want to learn the Perturb-seq-specific concepts, workflows, and tools.
+
+---
+
+## Curriculum Map
+
+| # | File | Type | Topic | Dataset | Est. Time |
+|---|------|------|-------|---------|-----------|
+| 00 | [00_overview.md](00_overview.md) | Markdown | What Perturb-seq is and why it exists | — | 20 min |
+| 01 | [01_experimental_design.md](01_experimental_design.md) | Markdown | MOI, power, controls, sequencing depth | — | 25 min |
+| 02 | [02_guide_design.md](02_guide_design.md) | Markdown | gRNA scoring, TSS targeting, barcodes | — | 20 min |
+| 03 | [03_data_acquisition.ipynb](03_data_acquisition.ipynb) | Notebook | Download and inspect public datasets | Norman 2019, Replogle 2022 | 1.5 hr |
+| 04 | [04_raw_processing_overview.md](04_raw_processing_overview.md) | Markdown | Cell Ranger / STARsolo / kb-python | — | 30 min |
+| 05 | [05_quality_control.ipynb](05_quality_control.ipynb) | Notebook | scRNA-seq QC + guide UMI QC | Norman 2019 | 2 hr |
+| 06 | [06_guide_assignment.ipynb](06_guide_assignment.ipynb) | Notebook | Assign guides to cells; multiplet handling | Norman 2019 | 2 hr |
+| 07 | [07_normalization_dimred.ipynb](07_normalization_dimred.ipynb) | Notebook | NTC-anchored PCA, cell cycle, UMAP | Norman 2019 | 2 hr |
+| 08 | [08_perturbation_effects.ipynb](08_perturbation_effects.ipynb) | Notebook | Pseudobulk DE (PyDESeq2), effect sizes | Replogle 2022 | 3 hr |
+| 09 | [09_mixscape.ipynb](09_mixscape.ipynb) | Notebook | Escape detection with Mixscape | Norman 2019 | 2 hr |
+| 10 | [10_visualization.ipynb](10_visualization.ipynb) | Notebook | Volcano, heatmap, perturbation UMAP | Both | 2.5 hr |
+| 11 | [11_genetic_interactions.ipynb](11_genetic_interactions.ipynb) | Notebook | Additive model, interaction scores | Norman 2019 | 3 hr |
+| 12 | [12_grn_and_prediction.ipynb](12_grn_and_prediction.ipynb) | Notebook | TF activity, GEARS, linear baseline | Both | 3–5 hr |
+| — | [glossary.md](glossary.md) | Markdown | Key terms A–Z | — | Reference |
+
+**Total estimated time:** ~25–30 hours
+
+---
+
+## Prerequisites
+
+- Python 3.11+, conda
+- Familiarity with scRNA-seq concepts (UMIs, barcodes, normalization, UMAP)
+- Experience with `scanpy` and `anndata` is helpful but not required
+
+---
+
+## Setup
+
+```bash
+# Clone and enter the repo
+git clone <repo-url>
+cd perturb-101
+
+# Create the conda environment
+conda env create -f environment.yml
+conda activate perturb-101
+
+# Launch JupyterLab
+jupyter lab
+```
+
+---
+
+## Data
+
+All data is downloaded programmatically in **notebook 03**. Two public datasets are used:
+
+| Dataset | Paper | Source | Size |
+|---------|-------|--------|------|
+| Norman et al. 2019 | *Science* 365, eaax4438 | Figshare | ~109k cells, 236 perturbations |
+| Replogle et al. 2022 (K562 Essential) | *Cell* 185, 2117–2128 | Figshare | ~650k cells, 2,057 perturbations |
+
+Downloaded files are stored in `data/` (gitignored). Notebook 03 also saves a smaller Norman subset for fast iteration.
+
+---
+
+## Notebook Dependencies
+
+```
+03 (download)
+  └── 05 (QC)
+        └── 06 (guide assignment)
+              └── 07 (normalization)
+                    ├── 08 (perturbation effects) ← uses Replogle
+                    └── 09 (Mixscape)
+                          └── 10 (visualization)  ← uses both 08 + 09 outputs
+                                └── 11 (genetic interactions)
+                                      └── 12 (GRN + prediction)
+```
+
+Notebooks 08 and 09 are independent and can be run in parallel after 07.
+
+---
+
+## Key Packages
+
+| Package | Purpose |
+|---------|---------|
+| `scanpy` | Core scRNA-seq analysis |
+| `anndata` | Data container |
+| `pertpy` | Guide assignment, Mixscape, distances, Augur |
+| `pydeseq2` | Pseudobulk differential expression |
+| `decoupler-py` | TF activity inference |
+| `pooch` | Reproducible file downloads |
+| `muon` | Multi-modal AnnData (MuData) |
+
+---
+
+## Citations
+
+If you use these materials, please also cite the datasets:
+
+- Norman, T.M. et al. *Exploring genetic interaction manifolds constructed from rich single-cell phenotypes.* Science 365, eaax4438 (2019).
+- Replogle, J.M. et al. *Mapping information-rich genotype-phenotype landscapes with genome-scale Perturb-seq.* Cell 185, 2117–2128 (2022).
+- Heumos, L. et al. *pertpy: an end-to-end framework for perturbation analysis.* Nature Methods (2025).

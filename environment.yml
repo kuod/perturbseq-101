@@ -1,0 +1,48 @@
+name: perturb-101
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - jupyter
+  - jupyterlab
+  - nb_conda_kernels
+  - pip
+  - pip:
+    # Core single-cell stack
+    - anndata>=0.10
+    - scanpy>=1.10
+    - muon>=0.1.6
+    # Perturbation analysis
+    - pertpy>=0.8          # guide assignment, Mixscape, distances, Augur
+    - pydeseq2>=0.4.11     # pseudobulk DE (Python DESeq2 port)
+    # Data access
+    - pooch>=1.8           # reproducible file downloads with hash verification
+    - GEOparse>=2.0        # GEO metadata access
+    - requests
+    - h5py
+    # Enrichment and TF activity
+    - decoupler-py>=1.6    # TF activity inference (CollecTRI, PROGENy)
+    - gseapy>=1.1          # GSEA / ORA pathway enrichment
+    # Visualization
+    - matplotlib>=3.8
+    - seaborn>=0.13
+    - plotly>=5.18
+    - adjustText>=1.0      # non-overlapping volcano labels
+    - upsetplot>=0.9
+    # Stats and ML
+    - statsmodels>=0.14
+    - scikit-learn>=1.4
+    - scipy>=1.11
+    - numpy>=1.26
+    - pandas>=2.0
+    # Optional: batch correction
+    - harmonypy>=0.0.9
+    # Optional: scVI (heavy; comment out if RAM-limited)
+    # - scvi-tools>=1.1
+    # Optional: GEARS deep learning (requires separate PyTorch + PyG install)
+    # Install AFTER activating this env:
+    #   pip install cell-gears
+    #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+    #   pip install torch_geometric

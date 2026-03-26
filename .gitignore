@@ -1,0 +1,36 @@
+# Downloaded data (populated by notebook 03)
+data/
+
+# Generated figures
+figures/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large model checkpoints (GEARS)
+*.pt
+*.pth
+*.ckpt
