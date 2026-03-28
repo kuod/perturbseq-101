@@ -59,4 +59,5 @@ dependencies:
     # - rapids-singlecell      # GPU-accelerated scanpy (requires CUDA 12+)
     #
     # Quick install of all theis_ecosystem dependencies:
-    #   pip install scvi-tools squidpy scvelo cellrank mofapy2 scirpy spatialdata
+    #   pip install scvi-tools squidpy scvelo cellrank mofapy2 scirpy spatialdata \
+    #               scrublet liana cell2location moscot sccoda milopy

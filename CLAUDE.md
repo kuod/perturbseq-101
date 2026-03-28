@@ -29,15 +29,21 @@ perturb-101/
 │   ├── 03                # Data download (Norman 2019, Replogle 2022 via pooch)
 │   ├── 05–12             # QC → guide assignment → normalization → DE → Mixscape
 │   │                     #   → visualization → genetic interactions → GRN
-│   ├── 13                # Gap analysis and roadmap
+│   ├── 13                # Differential abundance (Milo)
+│   ├── 14                # Batch correction (Harmony + scVI)
+│   └── 13_gap            # Gap analysis and roadmap
 │   ├── glossary.md
 │   └── tools_reference.md
-├── theis_ecosystem/      # scverse ecosystem refresher (T00–T04)
-│   ├── T00               # AnnData + Scanpy foundations
+├── theis_ecosystem/      # scverse ecosystem refresher (T00–T08)
+│   ├── T00               # AnnData + Scanpy + doublet detection + ambient RNA
 │   ├── T01               # scvi-tools (deep generative models, integration)
 │   ├── T02               # Squidpy (spatial transcriptomics)
 │   ├── T03               # CellRank 2 (trajectory inference)
-│   └── T04               # Muon + MOFA+ (multi-modal)
+│   ├── T04               # Muon + MOFA+ (multi-modal)
+│   ├── T05               # LIANA (cell-cell communication, scverse core 2025)
+│   ├── T06               # cell2location (spatial deconvolution)
+│   ├── T07               # Moscot (optimal transport trajectories + spatial)
+│   └── T08               # scCODA (compositional cell type analysis)
 ├── data/                 # git-ignored; created at runtime
 ├── environment.yml
 └── README.md
